@@ -1,28 +1,23 @@
 
-const btn = document.querySelector('button');
+const btnGet = document.querySelector('.btn-get-posts');
+const btnAdd = document.querySelector('.btn-add-posts');
 const container = document.querySelector('.container')
 
 function getPosts(cb) {
     const request = new XMLHttpRequest();
-
     request.open("GET", 'https://jsonplaceholder.typicode.com/posts');
-
-
     request.addEventListener('load', () => {
-
         const response = JSON.parse(request.responseText)
         cb(response);
-
     });
-
     request.addEventListener('error', () => {
         console.log('error');
     });
-
-
     request.send();
 }
-btn.addEventListener('click', () => {
+
+btnGet.addEventListener('click', () => {
+
     getPosts((response) => {
         const fragment = document.createDocumentFragment();
         response.forEach(element => {
@@ -46,5 +41,3 @@ btn.addEventListener('click', () => {
 
     });
 });
-
-
